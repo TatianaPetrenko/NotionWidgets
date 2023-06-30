@@ -1,45 +1,28 @@
+<script
+  src="https://code.jquery.com/jquery-3.7.0.min.js"
+  integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
+  crossorigin="anonymous"></script>
 
 
- <div id="tabs">
-        <div class="tab whiteborder">Ocean waves</div>
-        <div class="tab">Tab 2</div>
-        <div class="tab">Tab 3</div>
-        <div class="tabContent"><div id="waves"> <audio id="oceanradio" controls="" autoplay="" src="https://oceanwaves-mynoise.radioca.st/stream"></audio>  </div></div>
-        <div class="tabContent">2</div>
-        <div class="tabContent">3</div>
-    </div>
-
+<div id="tabs">
+  <ul>
+    <li><a href="#tabs-1">Nunc tincidunt</a></li>
+    <li><a href="#tabs-2">Proin dolor</a></li>
+    <li><a href="#tabs-3">Aenean lacinia</a></li>
+  </ul>
+  <div id="tabs-1">
+<div id="waves"> <audio id="oceanradio" controls="" autoplay="" src="https://oceanwaves-mynoise.radioca.st/stream"></audio>  </div>
+  </div>
+  <div id="tabs-2">
+    <p>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra massa metus id nunc. Duis scelerisque molestie turpis. Sed fringilla, massa eget luctus malesuada, metus eros molestie lectus, ut tempus eros massa ut dolor. Aenean aliquet fringilla sem. Suspendisse sed ligula in ligula suscipit aliquam. Praesent in eros vestibulum mi adipiscing adipiscing. Morbi facilisis. Curabitur ornare consequat nunc. Aenean vel metus. Ut posuere viverra nulla. Aliquam erat volutpat. Pellentesque convallis. Maecenas feugiat, tellus pellentesque pretium posuere, felis lorem euismod felis, eu ornare leo nisi vel felis. Mauris consectetur tortor et purus.</p>
+  </div>
+  <div id="tabs-3">
+    <p>Mauris eleifend est et turpis. Duis id erat. Suspendisse potenti. Aliquam vulputate, pede vel vehicula accumsan, mi neque rutrum erat, eu congue orci lorem eget lorem. Vestibulum non ante. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce sodales. Quisque eu urna vel enim commodo pellentesque. Praesent eu risus hendrerit ligula tempus pretium. Curabitur lorem enim, pretium nec, feugiat nec, luctus a, lacus.</p>
+    <p>Duis cursus. Maecenas ligula eros, blandit nec, pharetra at, semper at, magna. Nullam ac lacus. Nulla facilisi. Praesent viverra justo vitae neque. Praesent blandit adipiscing velit. Suspendisse potenti. Donec mattis, pede vel pharetra blandit, magna ligula faucibus eros, id euismod lacus dolor eget odio. Nam scelerisque. Donec non libero sed nulla mattis commodo. Ut sagittis. Donec nisi lectus, feugiat porttitor, tempor ac, tempor vitae, pede. Aenean vehicula velit eu tellus interdum rutrum. Maecenas commodo. Pellentesque nec elit. Fusce in lacus. Vivamus a libero vitae lectus hendrerit hendrerit.</p>
+  </div>
+</div>
 
 <style> 
-    #tabs .tab {
-    display: inline-block;
-   
-    padding: 5px 10px;
-    cursor: pointer;
-    position: relative;
-    z-index:5;
-}
-#tabs .whiteborder {
-   border: 1px solid #707070;
-    border-bottom: 1px solid #fff;
-    border-radius: 3px 3px 0  0;
-}
-#tabs .tabContent {
-    width: 300px;
-    height: 60px;
-    border: 1px solid #707070;
-    position: relative;
-    top: -1px;
-    z-index:1;
-    padding: 10px;
-    border-radius: 0 0 3px 3px
-}
-#tabs .hide {
-    display: none;
-}
-#tabs .show {
-    display: block;
-}
 #waves {
     background-image: url(https://64.media.tumblr.com/82de4b42c5d9c5dfeb4c39482499725f/c6145bf205a3f735-61/s500x750/9c741a9494558de1db4f28a6eb734944a5ec6243.gif);
     padding: 80px;
@@ -52,44 +35,8 @@ filter: opacity(0.6);
 }
 </style>
 
-<script> 
-
-var tab; // заголовок вкладки
-var tabContent; // блок содержащий контент вкладки
-
-
-window.onload=function() {
-    tabContent=document.getElementsByClassName('tabContent');
-    tab=document.getElementsByClassName('tab');
-    hideTabsContent(1);
-}
-
-document.getElementById('tabs').onclick= function (event) {
-    var target=event.target;
-    if (target.className=='tab') {
-       for (var i=0; i<tab.length; i++) {
-           if (target == tab[i]) {
-               showTabsContent(i);
-               break;
-           }
-       }
-    }
-}
-
-function hideTabsContent(a) {
-    for (var i=a; i<tabContent.length; i++) {
-        tabContent[i].classList.remove('show');
-        tabContent[i].classList.add("hide");
-        tab[i].classList.remove('whiteborder');
-    }
-}
-
-function showTabsContent(b){
-    if (tabContent[b].classList.contains('hide')) {
-        hideTabsContent(0);
-        tab[b].classList.add('whiteborder');
-        tabContent[b].classList.remove('hide');
-        tabContent[b].classList.add('show');
-    }
-}
-</script>
+ <script>
+  $( function() {
+    $( "#tabs" ).tabs();
+  } );
+  </script>
