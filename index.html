@@ -1,5 +1,45 @@
-<div id="waves"> <audio id="oceanradio" controls="" autoplay="" src="https://oceanwaves-mynoise.radioca.st/stream"></audio>  </div>
+
+
+ <div id="tabs">
+        <div class="tab whiteborder">Ocean waves</div>
+        <div class="tab">Tab 2</div>
+        <div class="tab">Tab 3</div>
+        <div class="tabContent"><div id="waves"> <audio id="oceanradio" controls="" autoplay="" src="https://oceanwaves-mynoise.radioca.st/stream"></audio>  </div></div>
+        <div class="tabContent">2</div>
+        <div class="tabContent">3</div>
+    </div>
+
+
 <style> 
+    #tabs .tab {
+    display: inline-block;
+   
+    padding: 5px 10px;
+    cursor: pointer;
+    position: relative;
+    z-index:5;
+}
+#tabs .whiteborder {
+   border: 1px solid #707070;
+    border-bottom: 1px solid #fff;
+    border-radius: 3px 3px 0  0;
+}
+#tabs .tabContent {
+    width: 300px;
+    height: 60px;
+    border: 1px solid #707070;
+    position: relative;
+    top: -1px;
+    z-index:1;
+    padding: 10px;
+    border-radius: 0 0 3px 3px
+}
+#tabs .hide {
+    display: none;
+}
+#tabs .show {
+    display: block;
+}
 #waves {
     background-image: url(https://64.media.tumblr.com/82de4b42c5d9c5dfeb4c39482499725f/c6145bf205a3f735-61/s500x750/9c741a9494558de1db4f28a6eb734944a5ec6243.gif);
     padding: 80px;
@@ -11,3 +51,45 @@
 filter: opacity(0.6);
 }
 </style>
+
+<script> 
+
+var tab; // заголовок вкладки
+var tabContent; // блок содержащий контент вкладки
+
+
+window.onload=function() {
+    tabContent=document.getElementsByClassName('tabContent');
+    tab=document.getElementsByClassName('tab');
+    hideTabsContent(1);
+}
+
+document.getElementById('tabs').onclick= function (event) {
+    var target=event.target;
+    if (target.className=='tab') {
+       for (var i=0; i<tab.length; i++) {
+           if (target == tab[i]) {
+               showTabsContent(i);
+               break;
+           }
+       }
+    }
+}
+
+function hideTabsContent(a) {
+    for (var i=a; i<tabContent.length; i++) {
+        tabContent[i].classList.remove('show');
+        tabContent[i].classList.add("hide");
+        tab[i].classList.remove('whiteborder');
+    }
+}
+
+function showTabsContent(b){
+    if (tabContent[b].classList.contains('hide')) {
+        hideTabsContent(0);
+        tab[b].classList.add('whiteborder');
+        tabContent[b].classList.remove('hide');
+        tabContent[b].classList.add('show');
+    }
+}
+</script>
